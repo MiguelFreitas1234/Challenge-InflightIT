@@ -27,9 +27,9 @@ interface FromResult {
 
 const Result: FromResult = {
     name: "",
-    dob: null as unknown as Date,
+    dob: null as unknown as Date, //Não usei "new Date" porque queria que o valor inicial fosse null.
     email: "",
-    hobbies: [] as string[],
+    hobbies: [],
 }
 
 const DataForm = () => {
@@ -41,8 +41,10 @@ const DataForm = () => {
     });
 
     const handleDateChange = (value: any) => {
+        let dobParse = value ? dayjs(value).toDate() : null;
+        
         setFieldTouched('dob', true);
-        setFieldValue('dob', value ? dayjs(value).toDate() : null);
+        setFieldValue('dob', dobParse);
     };
 
 
